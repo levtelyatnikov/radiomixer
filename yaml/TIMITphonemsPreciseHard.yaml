@@ -1,0 +1,95 @@
+#save_dir: '/home/lev/audio2/RadioDataset/save_dir'
+SequentialFileProcessor:
+  num_files_generate: 50000
+  save_dir: '/home/lev/audio2/RadioDataset/Datasets/TIMITphonemsPreciseHARD/train'
+  save_config_dir: '/home/lev/audio2/RadioDataset/Datasets/TIMITphonemsPreciseHARD'
+
+FileSampler:
+  dataset_split: train
+  test_size: 0.001
+  seed: 0
+  #['/home/lev/datasets/TIMIT/data/TEST', '/home/lev/datasets/TIMIT/data/TEST', '/home/lev/datasets/TIMIT/data/TEST', '/home/lev/datasets/TIMIT/data/TEST', '/home/lev/datasets/TIMIT/data/TEST']
+  dataset_dirs: ['/home/lev/datasets/TIMIT/data/TRAIN', '/home/lev/datasets/TIMIT/data/TRAIN', '/home/lev/datasets/TIMIT/data/TRAIN', '/home/lev/datasets/TIMIT/data/TRAIN']
+  dataset_names: [speech1, speech2, speech3, speech4]
+  min_datasets: 4
+  dataset_prob: [0.25, 0.25, 0.25, 0.25,]
+  replace: False
+  seed: 42
+
+FileLoader: 
+  sample_rate: 16000
+  remove_silence: False
+  normalize: True
+  # minimum duration of loaded file
+  min_duration: 1
+  type: TIMIT # other
+
+transform_chain:
+  TIMITSegmentSilenceSampler:
+    # Segment sampler parameters
+    sampling_rate: 16000
+    final_audio_clip_duration: 1.7
+
+
+    # silence sampler parameters
+    max_total_silence_dur: 0.1
+    min_segment_silence_dur: 0.01
+
+  TransitionSegmentSilenceParametersSampler:
+    # Fade in 
+    max_fade_in: 0.9  # percentage/100
+    min_fade_in: 0.05 # percentage/100
+    in_transition_type: ['linear', 'logarithmic', 'exponential', 'half_sine']
+
+    # Fade out 
+    max_fade_out: 0.9 # percentage/100
+    min_fade_out: 0.05 # percentage/100
+    out_transition_type: ['linear', 'logarithmic', 'exponential', 'half_sine']
+
+  ExtractAndFade: {}
+  SequentialConcatenator: {}
+  MelSpectrogram:
+    n_fft: 1024
+    win_length: 1024
+    hop_length: 210
+    n_mels: 128
+    sample_rate: 16000
+    # Power to DB
+    db: True
+    top_db: 120
+
+    # Cut time dimention if needed
+    x_output_size: 128
+
+  MinMaxScaler: {}
+
+
+
+
+    
+    
+    
+    
+    
+
+    
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
