@@ -33,9 +33,6 @@ class SegmentSilenceSampler(SegmentGenerator):
         return new_signals
 
 
-
-
-
 class SegmentSampler():
     def __init__(self, configs):
         self.configs = configs
@@ -75,9 +72,7 @@ class SegmentSampler():
             # print("self.audio_lengths[idx]", self.audio_lengths[idx])
             # print('self.audio_lengths[idx] - self.segment_min + 1', self.audio_lengths[idx] - self.segment_min + 1)
             # print('high', high)
-            
-
-            
+        
             s_delta = np.random.randint(low=0, high=high)
 
             self.segments_lengths.append(self.segment_min + s_delta)

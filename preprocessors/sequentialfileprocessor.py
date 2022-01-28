@@ -5,6 +5,7 @@ preprocess all files in a path.
 
 import os
 import logging
+from tqdm import tqdm
 
 from radiomixer.preprocessors.filepreprocessor import FilePreprocessor
 from radiomixer.utils.utils import create_dir_hierarchy_from_file
@@ -36,12 +37,11 @@ class SequentialFilePreprocessor:
 
     def preprocess(self):
         """Batch preprocess all data in a dir recursively."""
-        for idx in range(self.num_files_generate):
+        for idx in tqdm(range(self.num_files_generate)):
             save_path = self._infer_save_path(idx)
             create_dir_hierarchy_from_file(save_path)
             self.preprocessor.preprocess(save_path)
-            if idx%1000==0:
-                print(idx)
+            
         
 
     def _infer_save_path(self, idx: int) -> str:

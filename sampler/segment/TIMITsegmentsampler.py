@@ -9,7 +9,6 @@ class TIMITSegmentSilenceSampler(SegmentGenerator):
 
         self.SegmentSampler = TIMITSegmentSampler(configs)
         self.SilenceSampler = SilenceSampler(configs)
-        
 
     def _sampler(self, signals: list):
         """"
@@ -34,10 +33,6 @@ class TIMITSegmentSilenceSampler(SegmentGenerator):
             new_signals.append(signal)
             
         return new_signals
-
-
-
-
 
 class TIMITSegmentSampler():
     def __init__(self, configs):

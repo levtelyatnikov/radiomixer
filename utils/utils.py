@@ -8,6 +8,7 @@ from pathlib import Path
 
 def extract_extension_from_file(file: str) -> str:
     """Extract extension from file name.
+
     :param file: Path of file we want to extract the extension from.
     :return: Extension of file (e.g., mp3)
     """
@@ -17,6 +18,7 @@ def extract_extension_from_file(file: str) -> str:
 def add_extension_to_file(file: str,
                           extension: str) -> str:
     """Add extension to a file.
+
     :param file: File path to which to add an extension
     :param extension: Extension to append to file (e.g., mp3)
     :return: File with extension
@@ -26,6 +28,7 @@ def add_extension_to_file(file: str,
 
 def remove_extension_from_file(file: str) -> str:
     """
+
     :param file: File path to which to remove extension
     :return: File without extension
     """
@@ -33,8 +36,9 @@ def remove_extension_from_file(file: str) -> str:
 
 
 def create_dir_hierarchy(dir: str):
-    """Creates a hierarchy of directories, if it doesn't exists. Else,
-    it doesn't do anything.
+    """Creates a hierarchy of directories, if it doesn't exists. 
+    
+    Else, it doesn't do anything.
     :param dir: Path with directory hierarchy which should be created, if it
         doesn't exist
     """
@@ -42,8 +46,8 @@ def create_dir_hierarchy(dir: str):
 
 
 def create_dir_hierarchy_from_file(file: str):
-    """Creates a hierarchy of directories for a file, if it doesn't exists.
-    Else, it doesn't do anything.
+    """Creates a hierarchy of directories for a file,
+    
     :param file: File for which to create the relative dir hierarchy
     """
     dir = os.path.dirname(file)
@@ -51,4 +55,5 @@ def create_dir_hierarchy_from_file(file: str):
 
 
 def sec2rate(seconds , sampre_rate):
+    """ Converts second to timespamps with respective sampre_rate"""
     return int(seconds  * sampre_rate)

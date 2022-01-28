@@ -7,10 +7,12 @@ from radiomixer.transforms.transform import TransformType
 
 
 class SummationConcatenator(Concatenator):
-    """
+    """Sequentially concatenate diffetent segments
 
-    Sequentially concatenate diffetent segments
-    with randomly sampled silence between the segments
+    Segments have  to have equal lengths.
+    This is ensured with help of minimum duration of loaded audio 
+    (see parameter min_duration in loader). Parameter min_duration
+    has to be greater or equal to segment_min_duration.
     """
 
     def __init__(self):
@@ -41,7 +43,7 @@ class SummationConcatenator(Concatenator):
                                 parameters = parameters,
                                 parameters_own={
                                     "duration":signal_out.shape[1],
-                                    "labels": labels}) #"
+                                    "labels": labels}) 
         return signal
     
 # ---------------------------SequentialConcatenator---------------------------

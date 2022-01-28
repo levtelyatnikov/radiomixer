@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from radiomixer.io.signal import Signal, SignalFeature
+from radiomixer.io.signal import SignalFeature
 from radiomixer.transforms.transform import TransformSeq2Signal
 
 

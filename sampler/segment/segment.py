@@ -1,8 +1,15 @@
-from abc import ABC, abstractmethod
-from radiomixer.transforms.transform import TransformSeq, TransformType
+from abc import abstractmethod
+from radiomixer.transforms.transform import TransformSeq2Seq, TransformType
 
-class SegmentGenerator(TransformSeq):
-
+class SegmentGenerator(TransformSeq2Seq):
+    """
+    
+    SegmentGenerator takes list of Signals.
+    Generate segment for each Signal.
+    The generation is conditioned on transition properties.
+    Hence it is needed to generate initial point of segment
+    and segment duration.
+    """
     
     def process(self, signals: list):
         """
