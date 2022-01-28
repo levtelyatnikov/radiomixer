@@ -6,18 +6,17 @@ FileLoader:
     remove_silence: False
     normalize: True
     # Minimum duration of loaded file
-    min_duration: 8
+    min_duration: 4
 
 # Configure Saver
 FileSaver: 
   type: WaveFeaturesSaver
   configs: {}
-
-
+  
 SequentialFileProcessor:
   num_files_generate: 20
-  save_dir: '/home/lev/audio2/RadioDataset/Datasets/blalbalbla'
-  save_config_dir: '/home/lev/audio2/RadioDataset/Datasets/blalbalbla'
+  save_dir: "/home/lev/radiomixer/Datasets/example" #'../radiomixer/Datasets/example'
+  save_config_dir: "/home/lev/radiomixer/Datasets/example" #'../radiomixer/Datasets/example'
 
 FileSampler:
   dataset_split: test
@@ -34,13 +33,11 @@ FileSampler:
 
 
 transform_chain:
-  OverlapedEqualSegmentSampler:
+  EqualSegmentSampler:
     # Segment sampler parameters
     sampling_rate: 16000
-    final_audio_clip_duration: 8
+    final_audio_clip_duration: 4
     segment_min_duration: 1
-
-    
   
   TransitionOverlapedSegmentsParametersSampler:
     # Fade in 
@@ -57,6 +54,21 @@ transform_chain:
 
   CustomMixer: {}
   SummationConcatenator: {}
+  LibrosaNormalize: {}
+  MelSpectrogram:
+    n_fft: 1024
+    win_length: 1024
+    hop_length: 210
+    n_mels: 128
+    sample_rate: 16000
+    # Power to DB
+    db: True
+    top_db: 120
+
+    # Cut time dimention if needed
+    x_output_size: -1
+
+
   
 
   

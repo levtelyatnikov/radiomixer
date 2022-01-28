@@ -5,13 +5,20 @@ transforms to apply to the data, and their parameters, in a config file.
 To use the entry point run:
 $ preprocess /path/to/config.yml
 """
+import sys
+import os
+from pathlib import Path
+
+print(str(Path(os.getcwd()).parent))
+sys.path.append(str(Path(os.getcwd()).parent))
+print(sys.path)
 
 import argparse
 from pathlib import Path
 
-from config.configloader import create_config_loader
-from config.configsaver import ConfigSaver
-from creator.sequentialfilepreprocessorcreator import create_batch_file_preprocessor_creator
+from radiomixer.config.configloader import create_config_loader
+from radiomixer.config.configsaver import ConfigSaver
+from radiomixer.creator.sequentialfilepreprocessorcreator import create_batch_file_preprocessor_creator
 
 
 def _parse_config_file() -> str:
@@ -46,4 +53,6 @@ def preprocess():
 
 
 if __name__ == "__main__":
+    sys.path.append(str(Path(__file__).parent))
+    print (str(Path(__file__).parent))
     preprocess()

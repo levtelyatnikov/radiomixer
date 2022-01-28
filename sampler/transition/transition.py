@@ -1,13 +1,14 @@
 
 from abc import abstractmethod
-from radiomixer.transforms.transform import TransformSeq, TransformType
+from radiomixer.transforms.transform import TransformSeq2Seq, TransformType
 
-class TransitionSampler(TransformSeq):
+class TransitionSampler(TransformSeq2Seq):
     """Abstract class that provides an interface to generate transitions"""
     
     def process(self, signals: list):
 
         for signal in signals:  
+            
             signal.name = self._prepend_transform_name(signal.name)
             signal = self._sampler(signal)
         
@@ -16,7 +17,3 @@ class TransitionSampler(TransformSeq):
     @abstractmethod
     def _sampler(self):
         pass
-
-
-
-

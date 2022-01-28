@@ -5,7 +5,7 @@ from radiomixer.transforms.transform import TransformType
 from radiomixer.transforms.mixer.extractor import ExtractSegment
 from radiomixer.transforms.filters.torchfilters import TorchFilterIn, TorchFilterOut 
 from radiomixer.transforms.filters.customefilters import CustomFilter
-from radiomixer.transforms.scaler.librosanorm import LibrosaNorm
+from radiomixer.transforms.scaler.scalers import LibrosaNorm
 
 
 

@@ -12,10 +12,10 @@ from radiomixer.transforms.scaler.scalers import LibrosaNorm, MinMaxScaler
 from radiomixer.transforms.feature.MelSpectrogram import MelSpectrogram
 from radiomixer.transforms.filters.torchfilters import TorchFilterIn, TorchFilterOut
 from radiomixer.transforms.concatenator.concatenators import SequentialConcatenator, SummationConcatenator
-from radiomixer.sampler.segment.segmentsilencesampler import SegmentSilenceSampler
-from radiomixer.sampler.segment.TIMITsegmentsampler import TIMITSegmentSilenceSampler
-from radiomixer.sampler.segment.overlapsegmentsampler import OverlapedEqualSegmentSampler
-from radiomixer.sampler.transition.transitions import TransitionSegmentSilenceParametersSampler, TransitionOverlapedSegmentsParametersSampler
+
+
+from radiomixer.sampler.segment.segmet_samplers_wrappers import EqualSegmentSamplerWrapper
+from radiomixer.sampler.transition.transitions import TransitionOverlapedSegmentsParametersSampler
 
 logger = logging.getLogger(__name__)
 
@@ -32,12 +32,11 @@ class TransformFactory:
             "MinMaxScaler": MinMaxScaler,
             "LibrosaNormalize": LibrosaNorm,
             "SequentialConcatenator": SequentialConcatenator,
-            "SegmentSilenceSampler": SegmentSilenceSampler,
-            "TransitionSegmentSilenceParametersSampler": TransitionSegmentSilenceParametersSampler,
+            
             "MelSpectrogram": MelSpectrogram,
-            "TIMITSegmentSilenceSampler":TIMITSegmentSilenceSampler, 
-            "OverlapedEqualSegmentSampler": OverlapedEqualSegmentSampler,
+            
             "TransitionOverlapedSegmentsParametersSampler": TransitionOverlapedSegmentsParametersSampler,
+            "EqualSegmentSampler": EqualSegmentSamplerWrapper,
 
             "CustomMixer": CustomMixer,
             "CustomFilter":CustomFilter,

@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class WaveFeaturesSaver(Saver):
     """WaveFeaturesSaver saves arrays as npz files"""
-    def __init__(self):
+    def __init__(self, cfg):
         super().__init__("npz")
         logger.info("Instantiated WaveFeaturesSaver object")
 
@@ -33,7 +33,7 @@ class WaveFeaturesSaver(Saver):
         np.savez(file_with_extension,
                  audio = signal.data,
                  data_features = signal.data_features,
-                 labels = signal.labels,
+                # labels = signal.labels,
                  parameters = signal.parameters,
                  parameters_own = signal.parameters_own)
         

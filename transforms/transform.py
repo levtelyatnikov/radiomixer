@@ -12,27 +12,22 @@ class TransformType(Enum):
     TORCHFILTERIN = 'TorchFilterIn'
     TORCHFILTEROUT = 'TorchFilterOut'
     LIBROSANORMALIZE = 'LibrosaNormalize'
-
     MELSPECTROGRAM = 'MelSpectrogram'
     MINMAXSCALER = 'MinMaxScaler'
-
     EXTRACTSEGMENT = 'ExtractSegment'
     TRANSITIONSAMPLER = 'TransitionSampler'
     EXTRACTANDFADE = 'ExtractAndFade'
-    SEGMENTSILENCESAMPLER = 'SegmentSilenceSampler' 
-    TIMITSEGMENTSILENCESAMPLER = 'TIMITSegmentSilenceSampler'
-    OVERLAPEDEQUALSEGMENTSAMPLER = 'OverlapedEqualSegmentSampler'
-
-    TRANSITIONSEGMENTSILENCESPARAMETERSSAMPLER = 'TransitionSegmentSilenceParametersSampler'
+    EQUALSEGMENTSAMPLER = 'EqualSegmentSampler'
     TRANSITIONSOVERLAPEDSEGMENTSPARAMETERSSAMPLER = 'TransitionOverlapedSegmentsParametersSampler'
-
     SEQUENTIALCONCATENATOR = 'FequentialConcatenator'
     TorchMixer = 'TorchMixer'
     CustomMixer = 'CustomMixer'
     SummationConcatenator = 'SummationConcatenator'
 
 class Transform(ABC):
-    """Transform is a common interface for all transforms objects. Such
+    """
+    
+    Transform is a common interface for all transforms objects. Such
     objects manipulate a signal (e.g., applying log scaling, extracting
     MFCCs).
     Attrs:
@@ -45,7 +40,9 @@ class Transform(ABC):
         
     @abstractmethod
     def process(self, signal: Signal) -> Signal:
-        """This method is responsible to apply a transforms to the incoming
+        """
+        
+        This method is responsible to apply a transforms to the incoming
         signal.
         :param signal: Signal object to be manipulated
         :return: New signal object with transformed values
@@ -55,8 +52,10 @@ class Transform(ABC):
         return self.name.value + "_" + string
 
 
-class TransformSeq(ABC):
-    """Transform is a common interface for all transforms objects. Such
+class TransformSeq2Seq(ABC):
+    """
+    
+    Transform is a common interface for all transforms objects. Such
     objects manipulate a signal (e.g., applying log scaling, extracting
     MFCCs).
     Attrs:
@@ -69,7 +68,9 @@ class TransformSeq(ABC):
 
     @abstractmethod
     def process(self, signals: list) -> list:
-        """This method is responsible to apply a transforms to the incoming
+        """
+        
+        This method is responsible to apply a transforms to the incoming
         signals.
         :param signals: list of Signal objects to be manipulated
         :return: New list of signal objects with transformed values
@@ -79,20 +80,28 @@ class TransformSeq(ABC):
         return self.name.value + "_" + string
 
 
-
 class TransformSeq2Signal(ABC):
+    """
+    
+    The difference betwee TransformSeq2Seq and TransformSeq2Signal
+    is that in the first case output of process is a list
+    while in the second case the output is a Signal or SignalFeature
+    """
 
     def __init__(self, name: TransformType):
         self.name = name
-    
+        
 
     @abstractmethod
-    def process(self, signals: list) -> list:
-        """This method is responsible to apply a transforms to the incoming
+    def process(self, signals: list):
+        """
+        
+        This method is responsible to apply a transforms to the incoming
         signals.
         :param signals: list of Signal objects to be manipulated
-        :return: New signal objects with transformed values
+        :return: New list of signal objects with transformed values
         """
 
     def _prepend_transform_name(self, string):
         return self.name.value + "_" + string
+

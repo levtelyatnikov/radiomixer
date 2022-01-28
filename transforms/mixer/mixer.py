@@ -2,13 +2,13 @@
 
 
 import logging
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from radiomixer.io.signal import Signal
-from radiomixer.transforms.transform import TransformSeq,TransformType
+from radiomixer.transforms.transform import TransformSeq2Seq, TransformType
 
 logger = logging.getLogger(__name__)
 
-class Mixer(TransformSeq):
+class Mixer(TransformSeq2Seq):
     """Abstract class to provide interface to extract and appply transitions
 
 

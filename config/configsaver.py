@@ -2,7 +2,7 @@
 
 import yaml
 
-class ConfigSaver:
+class ConfigSaver():
     """ConfigSaver saves a Python object as a yaml file."""
 
     def __init__(self):
@@ -18,5 +18,5 @@ class ConfigSaver:
         with open(file, "w", encoding="latin-1") as yaml_file:
             yaml.dump(configs,
                       yaml_file,
-                      )#indent=self._indent
+                      indent=self._indent)
         
