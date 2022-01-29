@@ -35,8 +35,6 @@ RadioMixer is the tool that will allow you:
  -  Mix audios with radio DJ workflow. 
  -  Extract audio features
 
-
-
 ## How do I augment an audio datasets? ##
 To perform datasets augmentation it is necessary to do a cpoule of steps:
  - Download and store initial datasets
@@ -59,63 +57,29 @@ Entry point of the code is a preprocessor (SequentialFileProcessor object is con
 
 If you want to understand better the code organization please refer to [praudio](https://github.com/musikalkemist/praudio)
 #### Configuration file logic
+This section will provied with a brief description of the configuration file. Take a look at **teamplate1.yaml** for more details
 Configuration file is divided into five sections:
-
 - FileLoader
-    - type
-    - configs
-
+    - `type`:    Loader type
+    - `configs`: Loader configs
 - FileSaver
-    - type
-    - configs
-  
+    - `type`:    Saver type
+    - `configs`: Saver configs
 - FileSampler
-    - dataset_split
-    - test_size
-    - dataset_dirs
-    - dataset_names
-    - min_datasets
-    - dataset_prob
-    - replace
-    - seed
-
+    - `dataset_split`:  Train/test split (which part of the dataset is foing to be generated)
+    - `test_size`:      Test size
+    - `dataset_dirs`:   Dataset dirrectories in a list (e.g ["dataset1/", "dataset2/"...])
+    - `dataset_names`:  Dataset names corresponding to dataset dirrectories
+    - `min_datasets`:   Minimum number of dataset used to generate one audio
+    - `dataset_prob`:   Samling dataset probability distribution 
+    - `replace`:        Possibility to samle same dataset
+    - `seed`:           Seed
 - SequentialFileProcessor
-    - num_files_generate
-    - save_dir
-    - save_config_dir
-
+    - `num_files_generate`: Number of files to generate
+    - `save_dir`:           Save dirrectory
+    - `save_config_dir`:    Config save dirrectory
 - transform_chain
-    - Transforms 
-
-
-
-
-The core of the library is the *preprocess* entry point. This script works 
-with a config file. You set the type of preprocessing you want to apply in a 
-yaml file, and then run the script. Your dataset will be entirely 
-preprocessed and the results recursively stored in a directory of your 
-choice that can potentially be created from scratch.
-
-To run the entry point, ensure the library is installed and then type:
-```shell
-$ preprocess /path/to/config.yml
-```
-
-In the config.yml, you should provide the following parameters:
-- `dataset_dir`: Path to the directory where your audio dataset is stored
-- `save_dir`: Path where to save the preprocessed audio.
-- Under `file_preprocessor`, you should provide settings for `loader` and `transforms_chain`.
-- `loader`: Provide settings for the loader.
-- `transforms_chain`: Parameters for each transform in the sequence. 
-  of transforms which are applied to your data (i.e., TransformChain).
-
-These config parameters are used to dinamically initialise the relative 
-objects in the library. To learn what parameters are available at each 
-level in the config file, please refer to the docstrings in the relative 
-objects.
-
-Check out `test/config.sampleconfig.yml` to see an example of a valid config 
-file.
+    - `Transforms`: Sequence of audio transforms and manipulations
 
 ### Dataset list
 [MUSAN](http://www.openslr.org/17/)
