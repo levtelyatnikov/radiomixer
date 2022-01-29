@@ -12,13 +12,7 @@ class FileSampler():
         """
 
         FileSampler is responsible for providing filepath 
-        to generate new audios.
-        Arguments:
-            dataset_dirs,
-            dataset_names,
-            seed = 0,
-            dataset_prob=None, replace=False
-            
+        to generate new audios.    
         """
         np.random.seed(configs['seed'])
         self.dataset_paths = configs['dataset_dirs'] 
@@ -32,16 +26,11 @@ class FileSampler():
 
         self.min_datasets = configs['min_datasets']
         self.n_datasets = len(self.dataset_names)
-
-        # create dict of "dataset name : audio_paths"
-        
-        #datasetAudioDict = dict(zip(self.dataset_names, list(map(lambda x: glob.glob(os.path.join(x, "**/*.wav"), recursive=True)), self.dataset_paths)))
         self.datasetAudioDict = self.generate_split()
 
     def generate_split(self,):
         datasetAudioDict = dict(zip(self.dataset_names, [sorted(glob.glob(os.path.join(x, "**/*.wav"), recursive=True)) for x in self.dataset_paths]))
-        train_data = {}
-        test_data = {}
+        train_data, test_data = {}, {}
 
         for key, value in datasetAudioDict.items():
             
@@ -52,20 +41,15 @@ class FileSampler():
                 train_data[key] = train
                 test_data[key] = test
 
-        # double check
-
+        # Double check
         a = set(itertools.chain(*[train_data[key] for key in train_data.keys()])) #set(itertools.chain(train_data[key] for key in train_data.keys()))
         b = set(itertools.chain(*[test_data[key] for key in test_data.keys()])) 
         assert len(a.intersection(b)) == 0, f"Train Test leak {len(a.intersection(b))}"
 
         if self.dataset_split == "train":
             return train_data
-
         else:
             return test_data
-            
-                
-            
     
     def sample_files(self):
         """

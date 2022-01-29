@@ -7,8 +7,6 @@ from radiomixer.transforms.filters.torchfilters import TorchFilterIn, TorchFilte
 from radiomixer.transforms.filters.customefilters import CustomFilter
 from radiomixer.transforms.scaler.scalers import LibrosaNorm
 
-
-
 class CustomMixer(Mixer):
     """CustomMixer class to Extract, Fade, Normalize segment
 

@@ -17,7 +17,7 @@ class EqualSegmentSampler():
         self.configs = configs
         self.sample_rate = self.configs['sampling_rate']
         self.totalSignalDur = sec2rate(self.configs['final_audio_clip_duration'], self.sample_rate) 
-        self.minSegmentDur = sec2rate(self.configs['segment_min_duration'], self.sample_rate)
+        
 
     def process(self, signals: list):
         segments = []

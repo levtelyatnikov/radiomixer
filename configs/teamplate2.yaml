@@ -1,0 +1,93 @@
+# Configure Loader
+FileLoader: 
+  type: TIMITLoader       # Loader type
+  configs:                # Loader configuration
+    sample_rate: 16000    # Sampling rate
+    remove_silence: False # Remove silence during loading audio
+    normalize: True       # Normalize loaded audio into [-1, 1] range
+    min_duration: 4       # Minimum duration of loaded file in seconds.
+    # In case of loaded audio is smaller than min_duration parameter, audio is "looped" as many times as needed to achieve minimum_dur
+
+# Configure Saver
+FileSaver: 
+  type: WaveFeaturesSaver # Saver type
+  configs: {}             # Saver configurations
+
+# Configure SequentialFileProcessor
+SequentialFileProcessor:
+  num_files_generate: 3                     # Number files to generate
+  save_dir: '../Datasets/teamplate'         # Generated audio saving directory
+  save_config_dir: '../Datasets/teamplate'  # Config saving directory
+
+# Configure FileSampler
+FileSampler:
+  dataset_split: train # Data split
+  test_size: 0.001     # Test size
+  dataset_dirs: ['/home/lev/radiomixer/Datasets/ToyTIMIT/TRAIN', '/home/lev/radiomixer/Datasets/ToyTIMIT/TRAIN'] # Backbone dataset dirrectories
+  dataset_names: [speech1, speech2] # Dataset names which will be passed as label into Signal datatype object
+  min_datasets: 2                   # Minimum number of datasets to generate new audio
+  dataset_prob: [0.5, 0.5]          # Sampling distribution of datasets (e.g. can be used in case one dataset is much greater than the others)
+  replace: False                    # Use same dataset twice
+  seed: 42                          # Seed
+
+# Configure TransformChain
+transform_chain:
+  EqualSegmentSampler:
+    sampling_rate: 16000          # Sampling rate of segments (have to be equal to Loader sampling rate for now)
+    final_audio_clip_duration: 4  # Final audio duration length
+
+  TransitionOverlapedSegmentsParametersSampler:
+      # Note that max_fade_in + min_fade_out + max_stable_period have to be smaller than 1.0
+      max_fade_in: 0.45       # Fade in maximum percentage
+      min_fade_in: 0.1        # Fade out minimum percentage
+      max_fade_out: 0.45      # Fade out maximum percentage
+      min_fade_out: 0.1       # Fade out minimum percentage
+      max_stable_period: 0.1  # Stable period percentage
+      in_transition_type: ['linear', 'logarithmic', 'exponential', 'half_sine']   # Fade in curves
+      out_transition_type: ['linear', 'logarithmic', 'exponential', 'half_sine']  # Fade out curves
+
+  CustomMixer: {}
+  SummationConcatenator: {}
+  LibrosaNormalize: {}
+  MelSpectrogram:
+    n_fft: 1024
+    win_length: 1024
+    hop_length: 210
+    n_mels: 128
+    sample_rate: 16000
+    db: True             # Power to DB
+    top_db: 120
+    x_output_size: -1    # Cut time dimension if needed otherwise -1
+
+  MinMaxScaler: {}
+
+
+
+
+      
+      
+      
+      
+      
+
+      
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+

@@ -16,7 +16,7 @@ class ClassicLoader(Loader):
         logger.info("Instantiated ClassicLoader object")
     
     def load(self, file:str, label) -> Signal:
-        """Load audio file and returns Tensor waveform.
+        """Load audio file and Signal object.
         
         Parameters:
           :file: Path to audio file to load
@@ -43,7 +43,7 @@ class ClassicLoader(Loader):
 
 #--------------------------------TIMITLoader---------------------------------#
 class TIMITLoader(Loader):
-    
+    """TIMITLoader loading phonems into Signal object"""
     def __init__(self, cfg: dict):
         super().__init__(cfg)
         logger.info("Instantiated TIMITLoader object")
