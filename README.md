@@ -81,6 +81,33 @@ Configuration file is divided into five sections:
 - transform_chain
     - `Transforms`: Sequence of audio transforms and manipulations
 
+### Organization
+#### Signal object
+#### Loader
+Loader is responsible for loading an audio file and create Signal object.
+Available modules:
+ - `ClassicLoader`
+ - `TIMITLoader`
+See `io/loader/loaders.py` for parameters needed to be passed into modules
+
+#### Saver
+Saver is responsible for saving  Signal object as npz file
+Available modules:
+ - `WaveFeaturesSaver`
+See `io/loader/savers.py` for parameters needed to be passed into modules
+
+#### FileSampler
+File sampler is responsible for providing filepaths of audio which will be loaded into Signal object and used to generate new (augmented) audio.
+
+#### TransformChain
+Transform Chain (TR) is responsible for applying different manipulation to audios. There are many steps for which TR is responsible:
+- Generate segment parameters for audio segments from loaded audios. (e.g. initial timestamp, segment duration) (Available modules: `EqualSegmentSampler`)
+- Mixer (Available modules: `CustomMixer`, `TorchMixer`). Mixer module is a composition of next manipulations:
+    - Generate transiton parameters (Available modules: `TransitionOverlapedSegmentsParametersSampler`)
+    - Extract audio segments (Available modules: `ExtractSegment`)
+    - Apply Fade in/out manipulations (`CustomFilter`, `TorchFilterIn`, `TorchFilterOut`)
+    
+
 ### Dataset list
 [MUSAN](http://www.openslr.org/17/)
 
