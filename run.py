@@ -5,14 +5,7 @@ transforms to apply to the data, and their parameters, in a config file.
 To use the entry point run:
 $ preprocess /path/to/config.yml
 """
-import sys
 import os
-from pathlib import Path
-
-print(str(Path(os.getcwd()).parent))
-sys.path.append(str(Path(os.getcwd()).parent))
-print(sys.path)
-
 import argparse
 from pathlib import Path
 
