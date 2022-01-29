@@ -83,8 +83,13 @@ Configuration file is divided into five sections:
 
 ### Dataset list
 [MUSAN](http://www.openslr.org/17/)
+
 [GTZAN music-speech](http://marsyas.info/downloads/datasets.html)
+
 [GTZAN Genre collection](http://marsyas.info/downloads/datasets.html)
+
 [Scheirer & Slaney](https://labrosa.ee.columbia.edu/sounds/musp/scheislan.html)
+
 [Instrument Recognition in Musical Audio Signals (https://www.upf.edu/web/mtg/irmas#:~:text=IRMAS%20is%20intended%20to%20be,violin%2C%20and%20human%20singing%20voice.)
+
 [Singing Voice dataset](http://isophonics.net/SingingVoiceDataset), and  [LibriSpeech](http://www.openslr.org/12/).
