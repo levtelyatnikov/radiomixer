@@ -1,0 +1,89 @@
+# Configure Loader
+FileLoader: 
+  type: TIMITLoader
+  configs:
+    sample_rate: 16000
+    remove_silence: False
+    normalize: True
+    # Minimum duration of loaded file
+    min_duration: 8
+
+# Configure Saver
+FileSaver: 
+  type: WaveFeaturesSaver
+  configs: {}
+
+
+SequentialFileProcessor:
+  num_files_generate: 20
+  save_dir: '/home/lev/audio2/RadioDataset/Datasets/blalbalbla'
+  save_config_dir: '/home/lev/audio2/RadioDataset/Datasets/blalbalbla'
+
+FileSampler:
+  dataset_split: test
+  test_size: 0.25
+  seed: 0
+
+  dataset_dirs: ['/home/lev/datasets/TIMIT/data/TRAIN', '/home/lev/datasets/TIMIT/data/TRAIN', '/home/lev/datasets/TIMIT/data/TRAIN', '/home/lev/datasets/TIMIT/data/TRAIN'] #'/home/lev/datasets/TIMIT/data/TRAIN'
+  dataset_names: [speech1, speech2, speech3, speech4]
+  min_datasets: 2
+  dataset_prob: [0.25, 0.25, 0.25, 0.25]
+  replace: False
+  seed: 42
+
+
+
+transform_chain:
+  OverlapedEqualSegmentSampler:
+    # Segment sampler parameters
+    sampling_rate: 16000
+    final_audio_clip_duration: 8
+    segment_min_duration: 1
+
+    
+  
+  TransitionOverlapedSegmentsParametersSampler:
+    # Fade in 
+    max_fade_in: 0.45  # percentage/100
+    min_fade_in: 0.1 # percentage/100
+    in_transition_type: ['linear', 'logarithmic', 'exponential', 'half_sine']
+
+    # Fade out 
+    max_fade_out: 0.45 # percentage/100
+    min_fade_out: 0.1 # percentage/100
+    out_transition_type: ['linear', 'logarithmic', 'exponential', 'half_sine']
+
+    max_stable_period: 0.1 # percentage/100
+
+  CustomMixer: {}
+  SummationConcatenator: {}
+  
+
+  
+    
+    
+    
+    
+    
+
+    
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+

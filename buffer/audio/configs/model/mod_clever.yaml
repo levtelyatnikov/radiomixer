@@ -1,0 +1,13 @@
+decoder_resolution: [8,8]
+resolution: [128,128]
+num_slots:  5
+num_iterations: 3
+empty_cache: True
+n_samples: 5
+opt: 
+  lr: 0.0004
+  warmup_steps_pct: 0.05
+  decay_steps_pct: 0.3
+  weight_decay: 0.0
+  max_epochs: 100
+  scheduler_gamma: 0.05

@@ -1,0 +1,25 @@
+defaults:
+  - _self_
+  - dataset: clever #clever esc50
+  - model: mod_clever
+  - optional dataset_model: ${dataset}_${model}
+additional:
+  logger_project_name: "clever_benchmark_train"
+  logger_name: clever_train # missing value, have to be configured during run
+  is_verbose: True
+  debug: False
+trainer:
+  gpus: 1
+  num_sanity_val_steps: 1
+  is_logger_enabled: True
+  log_every_n_steps: 10
+  check_val_every_n_epoch: 10
+  accelerator: None
+
+
+
+
+
+
+
+

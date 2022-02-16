@@ -1,0 +1,8 @@
+
+train_batch_size: 64
+val_batch_size: 64
+data_root:  /home/lev/reprodl/reprodl2021/data/ESC-50
+num_train_images: -1 # Dataloader convert -1 into None obj.
+num_val_images: -1
+num_workers: 4
+in_channels: 1

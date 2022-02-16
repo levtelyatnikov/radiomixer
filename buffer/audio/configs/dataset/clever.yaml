@@ -1,0 +1,6 @@
+train_batch_size: 64
+val_batch_size: 64
+data_root:  /home/lev/datasets/CLEVR_v1.0/
+num_train_images: -1 # Dataloader convert -1 into None obj.
+num_val_images: -1
+num_workers: 4

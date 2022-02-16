@@ -1,0 +1,25 @@
+defaults:
+  - _self_
+  - dataset: musan #synthetic #clever
+  - model: mod_musan
+  - optional dataset_model: ${dataset}_${model}
+additional:
+  logger_project_name: "slot_attention_musan"
+  logger_name: 500epochRun # missing value, have to be configured during run
+  is_verbose: True
+  debug: False
+trainer:
+  gpus: 1
+  num_sanity_val_steps: 1
+  is_logger_enabled: True
+  log_every_n_steps: 1
+  check_val_every_n_epoch: 5
+  accelerator: None
+
+
+
+
+
+
+
+

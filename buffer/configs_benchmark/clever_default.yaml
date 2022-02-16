@@ -1,0 +1,50 @@
+additional:
+  logger_project_name: slot-attention-search
+  logger_name: vq_comparison
+  is_verbose: true
+  debug: false
+trainer:
+  gpus: 1
+  num_sanity_val_steps: 1
+  is_logger_enabled: true
+  log_every_n_steps: 10
+  check_val_every_n_epoch: 1
+  accelerator: None
+dataset:
+  train_batch_size: 64
+  val_batch_size: 64
+  data_root: /home/lev/datasets/CLEVR_v1.0/
+  num_train_images: -1
+  num_val_images: -1
+  num_workers: 4
+  name: clever
+  in_channels: 3
+  num_embeddings: 512
+model:
+  resolution:
+  - 128
+  - 128
+  num_slots: 5
+  num_iterations: 3
+  empty_cache: true
+  n_samples: 5
+  loss_type: MSE
+  kl_loss_reg: 1
+  slot_size: 64
+  mlp_hidden_size: 128
+  kernel_size: 5
+  decoder_resolution:
+  - 8
+  - 8
+  hidden_dims:
+  - 64
+  - 64
+  - 64
+  - 64
+  opt:
+    lr: 0.0004
+    warmup_steps_pct: 0.02
+    decay_steps_pct: 0.2
+    weight_decay: 0.0
+    max_epochs: 100
+    scheduler_gamma: 0.5
